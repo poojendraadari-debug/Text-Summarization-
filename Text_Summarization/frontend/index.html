@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title">📝 Text Summarization Dashboard</h1>
+                <p class="subtitle">Transform long texts into concise summaries using AI</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Control Panel -->
+            <section class="control-panel">
+                <div class="control-group">
+                    <label for="minLength" class="control-label">
+                        Minimum Summary Length
+                        <span class="value-display" id="minLengthValue">50</span> tokens
+                    </label>
+                    <input 
+                        type="range" 
+                        id="minLength" 
+                        min="10" 
+                        max="120" 
+                        value="50" 
+                        class="slider"
+                    >
+                    <small class="control-help">Adjust the minimum length of the summary</small>
+                </div>
+
+                <div class="control-group">
+                    <label for="maxLength" class="control-label">
+                        Maximum Summary Length
+                        <span class="value-display" id="maxLengthValue">220</span> tokens
+                    </label>
+                    <input 
+                        type="range" 
+                        id="maxLength" 
+                        min="60" 
+                        max="300" 
+                        value="220" 
+                        class="slider"
+                    >
+                    <small class="control-help">Adjust the maximum length of the summary</small>
+                </div>
+
+                <div class="length-info">
+                    <span class="info-item">
+                        <strong>Range:</strong> 
+                        <span id="lengthRange">50 - 220</span> tokens
+                    </span>
+                </div>
+            </section>
+
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="section-header">
+                    <h2>📌 Enter Your Text</h2>
+                    <span class="word-count" id="inputWordCount">0 words</span>
+                </div>
+                <textarea 
+                    id="inputText" 
+                    class="input-textarea"
+                    placeholder="Paste or type your text here... (minimum 10 words required)"
+                    rows="8"
+                ></textarea>
+                <div class="button-group">
+                    <button id="summarizeBtn" class="btn btn-primary">
+                        <span class="btn-icon">✨</span>
+                        Summarize Text
+                    </button>
+                    <button id="clearBtn" class="btn btn-secondary">
+                        <span class="btn-icon">🗑️</span>
+                        Clear
+                    </button>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-label">Input Words</div>
+                    <div class="stat-value" id="statInputWords">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Summary Words</div>
+                    <div class="stat-value" id="statSummaryWords">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Compression Ratio</div>
+                    <div class="stat-value" id="statCompressionRatio">0x</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Input Tokens</div>
+                    <div class="stat-value" id="statInputTokens">0</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Summary Tokens</div>
+                    <div class="stat-value" id="statSummaryTokens">0</div>
+                </div>
+            </section>
+
+            <!-- Output Section -->
+            <section class="output-section">
+                <div class="section-header">
+                    <h2>📤 Generated Summary</h2>
+                    <button id="copyBtn" class="btn btn-small" style="display: none;">
+                        <span class="btn-icon">📋</span>
+                        Copy
+                    </button>
+                </div>
+                <div class="output-container">
+                    <div id="summary" class="output-text">
+                        <p class="placeholder">Your summary will appear here...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+                <div class="spinner"></div>
+                <p>Generating summary... This may take a few seconds.</p>
+            </div>
+
+            <!-- Error/Alert Messages -->
+            <div id="alertContainer" class="alert-container"></div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Text Summarization Dashboard v1.0 | Powered by Transformers & Flask</p>
+            <p class="footer-tech">Using: facebook/bart-large-cnn | NumPy | Pandas | Scikit-learn</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
